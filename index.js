@@ -1,17 +1,8 @@
-{
-  /* <link
-id="icon"
-rel="icon"
-type="image/png"
-href="https://github.githubassets.com/images/icons/emoji/unicode/1f55f.png?v8"
-/> */
-}
+(async (win, doc) => {
+  const elLink = doc.querySelector('link[rel="icon"]');
+  if (!elLink) return;
 
-(async (win,doc) => {
-  const elLink = doc.querySelector('link[rel="icon"]')
-  if( !elLink )return
-
-  let pngList =  [
+  let pngList = [
     "https://github.githubassets.com/images/icons/emoji/unicode/1f55b.png?v8",
     "https://github.githubassets.com/images/icons/emoji/unicode/1f567.png?v8",
     "https://github.githubassets.com/images/icons/emoji/unicode/1f550.png?v8",
@@ -37,19 +28,18 @@ href="https://github.githubassets.com/images/icons/emoji/unicode/1f55f.png?v8"
     "https://github.githubassets.com/images/icons/emoji/unicode/1f55a.png?v8",
     "https://github.githubassets.com/images/icons/emoji/unicode/1f566.png?v8",
   ];
-  pngList.forEach(async(src,index)=>{
-    pngList[index] = await fetch(src).then(res=>res.blob()).then(b=>URL.createObjectURL(b))
-  })
-
+  pngList.forEach(async (src, index) => {
+    pngList[index] = await fetch(src)
+      .then((res) => res.blob())
+      .then((b) => URL.createObjectURL(b));
+  });
 
   let getIndex = () => {
     let now = new Date();
     let index = (now.getHours() % 12) * 2;
-    return (index = index + ((now.getMinutes() +5)%60 < 30 ? 0 : 1));
+    return (index = index + ((now.getMinutes() + 5) % 60 < 30 ? 0 : 1));
   };
   let sleep = (s) => new Promise((ok) => setTimeout(ok, s));
-  
-  elLink.href = pngList[getIndex()] || pngList[0];
 
   win.rockIcon = async () => {
     let index = getIndex();
@@ -59,5 +49,6 @@ href="https://github.githubassets.com/images/icons/emoji/unicode/1f55f.png?v8"
     }
     elLink.href = pngList[index] || pngList[0];
   };
-  win.setInterval(win.rockIcon,30_000)
-})(window,document);
+  win.setInterval(win.rockIcon, 30_000);
+  elLink.href = pngList[getIndex()] || pngList[0];
+})(window, document);
