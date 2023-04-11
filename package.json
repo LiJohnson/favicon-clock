@@ -1,0 +1,10 @@
+{
+  "name": "favicon-clock",
+  "version": "1.0.0",
+  "description": "favicon clock",
+  "main": "index.js",
+  "repository": "https://github.com/LiJohnson/favicon-clock",
+  "author": "LiJohnson",
+  "license": "MIT",
+  "private": false
+}
