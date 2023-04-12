@@ -1,7 +1,7 @@
 (async (win, doc) => {
-  const elLink = doc.querySelector('link[rel="icon"]');
+  let elLink = doc.querySelector('link[rel="icon"]');
   if (!elLink){
-    elLink = document.createElement("link")
+    elLink = doc.createElement("link")
     elLink.rel = "icon"
     doc.head.appendChild(elLink)
   }
