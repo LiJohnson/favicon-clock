@@ -1,6 +1,10 @@
 (async (win, doc) => {
   const elLink = doc.querySelector('link[rel="icon"]');
-  if (!elLink) return;
+  if (!elLink){
+    elLink = document.createElement("link")
+    elLink.rel = "icon"
+    doc.head.appendChild(elLink)
+  }
 
   let pngList = [
     "https://github.githubassets.com/images/icons/emoji/unicode/1f55b.png?v8",
